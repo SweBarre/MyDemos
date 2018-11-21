@@ -23,6 +23,9 @@ cat << EOF | sudo tee -a /etc/hosts
 10.10.10.104 worker3.suse.lab worker3
 EOF
 ```
+### NTP on KVM-host
+TODO: Add instructions on howto enable NTP on KVM-host
+
 ## Install CaaSP
 ### Administration dashbord (Velum)
 Start the installation by first installing the admin server.
