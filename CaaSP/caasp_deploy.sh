@@ -16,7 +16,7 @@ function print_help {
 cat << EOF
 
 Usage:
-  $(basename $0) [admin] [master <count>] [worker <count>]
+  $(basename $0) [admin] [master <count>] [worker <count>] [add <worker|master> <node number>
 
 EOF
 }
@@ -88,6 +88,23 @@ do
                         create_vm
                 done
                 shift
+	fi
+	if [[ "$1" = "add" ]]; then
+		#TODO: add fault handling in this section (and everywhere else)
+		if [[ "$2" == "worker" ]]; then
+	                OS_VARIANT="$WORKER_OS_VARIANT"
+	                VM_CPU="$WORKER_VM_CPU"
+	                VM_MEM="$WORKER_VM_MEM"
+	                VM_DISK_SIZE="$WORKER_VM_DISK_SIZE"
+	                ISO_IMAGE="$WORKER_ISO_IMAGE"
+	                AUTOYAST_URL="$WORKER_AUTOYAST_URL"
+			VM_MAC="${WORKER_VM_MAC}${3}"
+			VM_HOSTNAME="${WORKER_VM_HOSTNAME}-${3}"
+			create_vm
+		fi
+		shift
+		shift
+
         fi
 	shift
 done
