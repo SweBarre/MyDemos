@@ -17,10 +17,10 @@ cat << EOF | sudo tee -a /etc/hosts
 #CaaSP Demo VM
 10.10.10.10 smt.suse.lab smt
 10.10.10.100 admin.suse.lab admin
-10.10.10.101 master.suse.lab master
-10.10.10.102 worker1.suse.lab worker1
-10.10.10.103 worker2.suse.lab worker2
-10.10.10.104 worker3.suse.lab worker3
+10.10.10.101 master-1.suse.lab master
+10.10.10.102 worker-1.suse.lab worker1
+10.10.10.103 worker-2.suse.lab worker2
+10.10.10.104 worker-3.suse.lab worker3
 EOF
 ```
 ### NTP on KVM-host
@@ -42,6 +42,40 @@ Also set the KVM-Host as your NTP Server
 wait for the server to install and be rebooted.
 The administration node will then start a bunch of services (containers), this might take a couple of minutes.
 Point your favorite browser to https://admin.suse.lab and accept the certificate and go through the initial CaaSP configuration.
+
+First you have to create your "master" administration account, click on "Create Account" and enter email-address and select a password.
+![Velum](https://github.com/SweBarre/MyDemos/blob/master/CaaSP/images/admin2.png)
+
+You will be presented with the initial CaaS Platform configuration page
+select "Install Tiller" if you want to use helm charts
+then click next
+![Velum](https://github.com/SweBarre/MyDemos/blob/master/CaaSP/images/admin3.png)
+
+The initial CaaSP configuration is not complete, you can now boot the rest of the cluster node and point and add `autoyast=http://admin.suse.lab/autoyast` as boot parameter and they will autoinstall and register to the admin server (this is already done in the `caasp_deploy.sh` script)
+Click next
+![Velum](https://github.com/SweBarre/MyDemos/blob/master/CaaSP/images/admin4.png)
+
+We've not yet created any other nodes so the "Pending Nodes" will be empty. When they are installed they will show up as pending nodes.
+![Velum](https://github.com/SweBarre/MyDemos/blob/master/CaaSP/images/admin5.png)
+
+### Create cluster nodes
+Just run the `caasp_deploy.sh` script with the number of cluster nodes you need (default config for this demo is designed for one master and three workers).
+We start with one master and two workers.
+```bash
+./caasp_deploy.sh master 1 worker 2
+```
+virt-viewer will launch for every node, the installation will comlete without any user input because we will point the installation to the autoyast created on the administration node.
+Eventually when the installation is completed the nodes will pop up in the velum user interface (https://admin.suse.lab)
+![Velum](https://github.com/SweBarre/MyDemos/blob/master/CaaSP/images/admin6.png)
+
+Accept the nodes by clicking "Accept All Nodes"
+When the nodes are registred and accepted the will pop up as unused nodes.
+Select the appropriate roles for the nodes and click Next
+![Velum](https://github.com/SweBarre/MyDemos/blob/master/CaaSP/images/admin7.png)
+
+Before you bootstrap the kubernetes cluster you have to confirm the FQDN for the External Kubernetes API and the External Dashboard. In this demo the Kubernetes API FQDN is the same as the only master (master-1.suse.lab) and the dashboard is admin.suse.lab
+
+click "Bootstrap cluster"
 
 
 ![archtiecture](https://github.com/SweBarre/MyDemos/blob/master/CaaSP/images/architecture.png)
