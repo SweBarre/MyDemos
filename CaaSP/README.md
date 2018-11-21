@@ -31,14 +31,14 @@ Start the installation by first installing the admin server.
 ```
 This will launch the VM and display the VNC virt-viewer.
 
-After some time you will be prompted to select your systemsettings for the admin server
+After some time you will be prompted to select your system settings for the admin server
 Choose your language, keyboard layout, root password and specify the URL for the smt (or enter registration code) and select "Administration Node" as systemrole.
 Also set the KVM-Host as your NTP Server
 ![Admin](https://github.com/SweBarre/MyDemos/blob/master/CaaSP/images/admin1.png)
 
 wait for the server to install and be rebooted.
 The administration node will then start a bunch of services (containers), this might take a couple of minutes.
-Point your favorite browser to https://admin.suse.lab and acceppt the certificate and go through the initial CaaSP configuration.
+Point your favorite browser to https://admin.suse.lab and accept the certificate and go through the initial CaaSP configuration.
 
 
 ![archtiecture](https://github.com/SweBarre/MyDemos/blob/master/CaaSP/images/architecture.png)
