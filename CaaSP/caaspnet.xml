@@ -19,20 +19,20 @@
       <hostname>admin</hostname>
     </host>
     <host ip='10.10.10.101'>
-      <hostname>master.suse.lab</hostname>
-      <hostname>master</hostname>
+      <hostname>master-1.suse.lab</hostname>
+      <hostname>master-1</hostname>
     </host>
     <host ip='10.10.10.102'>
-      <hostname>worker1.suse.lab</hostname>
-      <hostname>worker1</hostname>
+      <hostname>worker-1.suse.lab</hostname>
+      <hostname>worker-1</hostname>
     </host>
     <host ip='10.10.10.103'>
-      <hostname>worker2.suse.lab</hostname>
-      <hostname>worker2</hostname>
+      <hostname>worker-2.suse.lab</hostname>
+      <hostname>worker-2</hostname>
     </host>
     <host ip='10.10.10.104'>
-      <hostname>worker3.suse.lab</hostname>
-      <hostname>worker3</hostname>
+      <hostname>worker-3.suse.lab</hostname>
+      <hostname>worker-3</hostname>
     </host>
   </dns>
   <ip address='10.10.10.1' netmask='255.255.255.0'>
