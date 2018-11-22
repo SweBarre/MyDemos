@@ -18,9 +18,9 @@ cat << EOF | sudo tee -a /etc/hosts
 10.10.10.10 smt.suse.lab smt
 10.10.10.100 admin.suse.lab admin
 10.10.10.101 master-1.suse.lab master
-10.10.10.102 worker-1.suse.lab worker1
-10.10.10.103 worker-2.suse.lab worker2
-10.10.10.104 worker-3.suse.lab worker3
+10.10.10.102 worker-1.suse.lab worker-1
+10.10.10.103 worker-2.suse.lab worker-2
+10.10.10.104 worker-3.suse.lab worker-3
 EOF
 ```
 ### NTP on KVM-host
