@@ -31,8 +31,9 @@ EOF
 ```
 ### NTP on KVM-host
 Configure NTP client on the kvm host by running
-```sudo yast ntp-client```
+`sudo yast ntp-client`
 and select "Now and boot" and make sure you have som servers configured
+
 ![yast](https://github.com/SweBarre/MyDemos/blob/master/CaaSP/images/yast-ntp-client.png)
 
 ## Install CaaSP
