@@ -83,7 +83,55 @@ Select the appropriate roles for the nodes and click Next
 ![Velum](https://github.com/SweBarre/MyDemos/blob/master/CaaSP/images/admin7.png)
 
 Before you bootstrap the kubernetes cluster you have to confirm the FQDN for the External Kubernetes API and the External Dashboard. In this demo the Kubernetes API FQDN is the same as the only master (master-1.suse.lab) and the dashboard is admin.suse.lab
+![Velum](https://github.com/SweBarre/MyDemos/blob/master/CaaSP/images/admin8.png)
 
 click "Bootstrap cluster"
 
+The kubernetes cluster is now beeing bootstrapped, it will take a while to complete.
+![Velum](https://github.com/SweBarre/MyDemos/blob/master/CaaSP/images/admin9.png)
 
+When the k8s sluster is bootstrapped you will see all green in the user interface and you can download the kubeconfig by clicking `kubeconfig`
+![Velum](https://github.com/SweBarre/MyDemos/blob/master/CaaSP/images/admin10.png)
+
+You will be redirected to the Kubernetes API FQDN (master-1.suse.lab) and you have to accept the certificate and enter your credentials to authenticate
+![Velum](https://github.com/SweBarre/MyDemos/blob/master/CaaSP/images/admin11.png)
+
+
+Download the kubeconfig file and save it to ~/.kube/config
+![Velum](https://github.com/SweBarre/MyDemos/blob/master/CaaSP/images/admin12.png)
+
+Click "Home" to return to the velum GUI
+
+You can test the connectivity
+```
+$ kubectl get nodes -o wide
+NAME       STATUS    ROLES     AGE       VERSION   EXTERNAL-IP   OS-IMAGE                 KERNEL-VERSION          CONTAINER-RUNTIME
+master-1   Ready     master    18m       v1.9.8    <none>        SUSE CaaS Platform 3.0   4.4.162-94.72-default   docker://17.9.1
+worker-1   Ready     <none>    18m       v1.9.8    <none>        SUSE CaaS Platform 3.0   4.4.162-94.72-default   docker://17.9.1
+worker-2   Ready     <none>    18m       v1.9.8    <none>        SUSE CaaS Platform 3.0   4.4.162-94.72-default   docker://17.9.1
+```
+
+## Expanding cluster
+Add a third worker node by executing
+```
+./caasp_deploy.sh add worker 3
+```
+virt-viewer will launch and the node will be installed.
+When the node has finished installing it will pop up in the velum interface under "Pending Nodes"
+![Velum](https://github.com/SweBarre/MyDemos/blob/master/CaaSP/images/admin13.png)
+
+Accept the node and it will soon be flagged added as "Unassigned nodes"
+![Velum](https://github.com/SweBarre/MyDemos/blob/master/CaaSP/images/admin14.png)
+
+click on "new" and select the node as worker
+![Velum](https://github.com/SweBarre/MyDemos/blob/master/CaaSP/images/admin15.png)
+
+Click "Add nodes" and when the deployment is finished you can varify with kubectl that the node is part of the cluster
+```
+$ kubectl get nodes -o wide
+NAME       STATUS    ROLES     AGE       VERSION   EXTERNAL-IP   OS-IMAGE                 KERNEL-VERSION          CONTAINER-RUNTIME
+master-1   Ready     master    50m       v1.9.8    <none>        SUSE CaaS Platform 3.0   4.4.162-94.72-default   docker://17.9.1
+worker-1   Ready     <none>    50m       v1.9.8    <none>        SUSE CaaS Platform 3.0   4.4.162-94.72-default   docker://17.9.1
+worker-2   Ready     <none>    50m       v1.9.8    <none>        SUSE CaaS Platform 3.0   4.4.162-94.72-default   docker://17.9.1
+worker-3   Ready     <none>    5m        v1.9.8    <none>        SUSE CaaS Platform 3.0   4.4.162-94.72-default   docker://17.9.1
+```
