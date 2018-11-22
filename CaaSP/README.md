@@ -1,10 +1,16 @@
 # CaaSP Demo setup
+This demo was created to go through the installation process as if it was manually done on bare metal servers, there are other images for CaaSP that are specificly for kvm, openstack, vmware, etc, that makes it even easier to deploy.
+
 To get the demo environment up and running you need the ISO images and preferably a working SMT server.
 You could use SCC directly, and if you don't have that I will add some comments on how to set one up as a VM in the demo environment
 
+The final installation will be
+![archtiecture](https://github.com/SweBarre/MyDemos/blob/master/CaaSP/images/architecture.png)
 
 ## Prerequisite
 All scripts and commands are ment to be run as a user with credentials to create and modify KVM. I'm running this on my lap-top so I've only tried to run the scripts directly on the KVM-host.
+
+If you want to override anything defined in the `default.env` you can create a `local.env` file and redefine the variables in `local.env`.
 
 ### Network.
 The KVM host will act as NTP, DHCP and DNS for the Demo environment.
@@ -17,14 +23,17 @@ cat << EOF | sudo tee -a /etc/hosts
 #CaaSP Demo VM
 10.10.10.10 smt.suse.lab smt
 10.10.10.100 admin.suse.lab admin
-10.10.10.101 master-1.suse.lab master
+10.10.10.101 master-1.suse.lab master-1
 10.10.10.102 worker-1.suse.lab worker-1
 10.10.10.103 worker-2.suse.lab worker-2
 10.10.10.104 worker-3.suse.lab worker-3
 EOF
 ```
 ### NTP on KVM-host
-TODO: Add instructions on howto enable NTP on KVM-host
+Configure NTP client on the kvm host by running
+```sudo yast ntp-client```
+and select "Now and boot" and make sure you have som servers configured
+![yast](https://github.com/SweBarre/MyDemos/blob/master/CaaSP/images/yast-ntp-client.png)
 
 ## Install CaaSP
 ### Administration dashbord (Velum)
@@ -78,4 +87,3 @@ Before you bootstrap the kubernetes cluster you have to confirm the FQDN for the
 click "Bootstrap cluster"
 
 
-![archtiecture](https://github.com/SweBarre/MyDemos/blob/master/CaaSP/images/architecture.png)
