@@ -103,7 +103,10 @@ Download the kubeconfig file and save it to ~/.kube/config
 
 Click "Home" to return to the velum GUI
 
-You can test the connectivity
+Install and setup kubectl if you don't already have it
+Look here for instructions: https://kubernetes.io/docs/tasks/tools/install-kubectl/
+
+After kubectl is installed, test the connectivity
 ```
 $ kubectl get nodes -o wide
 NAME       STATUS    ROLES     AGE       VERSION   EXTERNAL-IP   OS-IMAGE                 KERNEL-VERSION          CONTAINER-RUNTIME
