@@ -1,1 +1,1 @@
-# MyDemos
+# Scripts for SUSE demos
