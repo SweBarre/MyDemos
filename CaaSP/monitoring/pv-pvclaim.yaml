@@ -1,0 +1,93 @@
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: nfs1
+  namespace: monitoring
+spec:
+  capacity:
+    storage: 40Gi
+  accessModes:
+    - ReadWriteMany
+  persistentVolumeReclaimPolicy: Recycle
+  storageClassName: slow
+  nfs:
+    server: 10.10.10.10
+    path: "/srv/nfs/nfs1"
+
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: nfs2
+  namespace: monitoring
+spec:
+  capacity:
+    storage: 40Gi
+  accessModes:
+    - ReadWriteMany
+  persistentVolumeReclaimPolicy: Recycle
+  storageClassName: slow
+  nfs:
+    server: 10.10.10.10
+    path: "/srv/nfs/nfs2"
+
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: nfs3
+  namespace: monitoring
+spec:
+  capacity:
+    storage: 40Gi
+  accessModes:
+    - ReadWriteMany
+  persistentVolumeReclaimPolicy: Recycle
+  storageClassName: slow
+  nfs:
+    server: 10.10.10.10
+    path: "/srv/nfs/nfs3"
+    
+---
+kind: PersistentVolumeClaim
+apiVersion: v1
+metadata:
+  name: grafana
+  namespace: monitoring
+spec:
+  accessModes:
+    - ReadWriteMany
+  storageClassName: slow
+  resources:
+    requests:
+      storage: 10Gi
+
+---
+kind: PersistentVolumeClaim
+apiVersion: v1
+metadata:
+  name: prometheus-alert
+  namespace: monitoring
+spec:
+  accessModes:
+    - ReadWriteMany
+  storageClassName: slow
+  resources:
+    requests:
+      storage: 3Gi
+
+
+---
+kind: PersistentVolumeClaim
+apiVersion: v1
+metadata:
+  name: prometheus
+  namespace: monitoring
+spec:
+  accessModes:
+    - ReadWriteMany
+  storageClassName: slow
+  resources:
+    requests:
+      storage: 10Gi
+
