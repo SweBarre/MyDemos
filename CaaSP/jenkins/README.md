@@ -1,6 +1,6 @@
 # Install Jenkins in your CaaSP
 
-This requires that you have persistant storage configured, in this example we use the nfs-provisioner with a storage class name : example-nfs
+This requires that you have persistant storage configured, in this example we use the [nfs-provisioner](https://github.com/SweBarre/MyDemos/tree/master/CaaSP/nfs) with a storage class name : example-nfs
 
 create the namespaces
 ```bash
