@@ -17,11 +17,11 @@ alertmanager:
   persistentVolume:
     enabled: true
     ## Use a StorageClass
-    #storageClass: slow
+    storageClass: example-nfs
     ## Create a PersistentVolumeClaim of 2Gi
-    #size: 2Gi
+    size: 2Gi
     ## Use an existing PersistentVolumeClaim (my-pvc)
-    existingClaim: prometheus-alert
+    #existingClaim: prometheus-alert
 
 alertmanagerFiles:
   alertmanager.yml:
@@ -103,11 +103,11 @@ server:
   persistentVolume:
     enabled: true
     ## Use a StorageClass
-    #storageClass: slow
+    storageClass: example-nfs
     ## Create a PersistentVolumeClaim of 8Gi
-    #size: 8Gi
+    size: 8Gi
     ## Use an existing PersistentVolumeClaim (my-pvc)
-    existingClaim: prometheus
+    #existingClaim: prometheus
 serverFiles:
   alerts: {}
   rules:
