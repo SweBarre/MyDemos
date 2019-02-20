@@ -7,7 +7,8 @@ You also need the helm client binary installed on your client
 ## Prereq
 Add the entries to the one of your workernodes in your clients host file
 ```
-echo "10.10.10.102 prometheus.example.com prometheus-alertmanager.example.com grafana.example.com" | sudo tee -a /etc/hosts
+echo "10.10.10.102 prometheus.example.com prometheus-alertmanager.example.com grafana.example.com" \
+  | sudo tee -a /etc/hosts
 ```
 
 Create the monitoring namespace
@@ -72,6 +73,8 @@ kubectl create -f grafana-datasources.yaml
 ```
 
 deploy the Grafana
+if you want to change the admin password you can do that in the grafana-config-values.yaml
+the default password is linux
 ```bash
 helm install --name grafana stable/grafana \
   --namespace monitoring \
@@ -82,4 +85,20 @@ and a grafana dashboard as a ConfigMap
 ```bash
 kubectl apply -f grafana-dashboards-caasp-cluster.yaml
 ```
+
+# Accessing the monitoring stack
+point your browser to https://prometheus-alertmanager.example.com/ and access the alert-manager GUI with the user/password created with htpasswd (admin/linux)
+Accept the self-signed certificate.
+![Velum](https://github.com/SweBarre/MyDemos/blob/master/CaaSP/images/prometheus-alertmanager.png)
+
+Point your browser to https://prometheus.example.com/ and access the prometheus GUI with t
+he user/password created with htpasswd (admin/linux)
+Accept the self-signed certificate.
+![Velum](https://github.com/SweBarre/MyDemos/blob/master/CaaSP/images/prometheus.png)
+
+Finally access the grafana GUI at https://grafana.example.com and log in as admin and the password defined in grafana-config-values.yaml (linux).
+![Velum](https://github.com/SweBarre/MyDemos/blob/master/CaaSP/images/grafana.png)
+
+Click on the *CaaSP Cluster* dashboard and explore the graphs
+![Velum](https://github.com/SweBarre/MyDemos/blob/master/CaaSP/images/grafana-dashboard.png)
 
