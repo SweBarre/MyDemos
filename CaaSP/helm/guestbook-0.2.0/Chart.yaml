@@ -1,0 +1,6 @@
+apiVersion: v1
+name: Gestbook demo chart
+version: 0.2.0
+maintainers:
+  - name: Jonas Forsberg
+  - name: Peter Lundebye
