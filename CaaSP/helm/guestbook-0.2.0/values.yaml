@@ -1,0 +1,9 @@
+frontend:
+  replicas: 4
+  version: "v4"
+redismaster:
+  replicas: 1
+  version: "e2e"
+redisslave:
+  replicas: 2
+  version: "v1"
