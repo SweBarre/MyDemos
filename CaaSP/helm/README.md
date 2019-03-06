@@ -165,6 +165,9 @@ helm list
 ```
 
 if we want to rollback the release it's just running the rollback command and specify to what release you want to rollback to
+```
+helm history <release name>
+```
 ```bash
 helm rollback <release name> 1
 ```
